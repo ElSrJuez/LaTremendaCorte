@@ -1,8 +1,7 @@
 // Chat.tsx  
 import React, { useState } from 'react';  
 import {  
-  View,  
-  Text,  
+  View,  Text,
   TextInput,  
   Button,  
   KeyboardAvoidingView,  
@@ -12,10 +11,14 @@ import {
   ScrollView,  
 } from 'react-native';  
 import Colors from './Colors';  
-import styles from './Styles'; // Import the shared styles  
+import { baseStyles, profileStyles } from './Styles'; // Use named imports  
 import { generateText } from './OpenAIService'; // Import your OpenAI service  
   
-const Chat: React.FC = () => {  
+interface ChatProps {  
+  profile: 'computer' | 'portrait' | 'landscape';  
+}  
+  
+const Chat: React.FC<ChatProps> = ({ profile }) => {  
   const [prompt, setPrompt] = useState<string>('');  
   const [result, setResult] = useState<string>('');  
   const [loading, setLoading] = useState<boolean>(false);  
@@ -39,6 +42,9 @@ const Chat: React.FC = () => {
     }  
   };  
   
+  // Get the appropriate styles for the selected profile  
+  const chatStyles = profileStyles[profile] || profileStyles.computer;  
+  
   return (  
     <KeyboardAvoidingView  
       style={{ flex: 1 }}  
@@ -50,13 +56,11 @@ const Chat: React.FC = () => {
           contentContainerStyle={{ flexGrow: 1 }}  
           style={{ flex: 1 }}  
         >  
-          <View style={styles.chatContainer}>  
-            <Text style={[styles.heading, { color: textColor }]}>  
-              AI Chat  
-            </Text>  
+          <View style={chatStyles.chatContainer}>  
+            {/* Removed the "AI Chat" Text element */}  
             <TextInput  
               style={[  
-                styles.input,  
+                chatStyles.input,  
                 {  
                   color: textColor,  
                   backgroundColor: Colors.white,  
@@ -75,14 +79,14 @@ const Chat: React.FC = () => {
               color={Colors.primary}  
             />  
             {error ? (  
-              <Text style={styles.errorText}>{error}</Text>  
+              <Text style={baseStyles.errorText}>{error}</Text>  
             ) : null}  
             {result ? (  
-              <View style={styles.resultContainer}>  
-                <Text style={[styles.resultHeading, { color: textColor }]}>  
+              <View style={chatStyles.resultContainer}>  
+                <Text style={[baseStyles.resultHeading, { color: textColor }]}>  
                   Response:  
                 </Text>  
-                <Text style={[styles.resultText, { color: textColor }]}>  
+                <Text style={[baseStyles.resultText, { color: textColor }]}>  
                   {result}  
                 </Text>  
               </View>  

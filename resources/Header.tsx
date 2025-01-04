@@ -2,17 +2,17 @@
 import React from 'react';  
 import { View, Text, Image } from 'react-native';  
 import Colors from './Colors';  
-import styles, { FontSizes, FontWeights, Spacing } from './Styles';  
+import { baseStyles, profileStyles } from './Styles'; // Use named imports  
   
 const Header = () => {  
   return (  
-    <View style={styles.headerContainer}>  
+    <View style={baseStyles.headerContainer}>  
       <Image  
         source={require('./assets/LaTremendaCorteApp.png')}  
-        style={styles.headerImage}  
+        style={baseStyles.headerImage}  
         resizeMode="contain"  
       />  
-      <Text style={styles.headerTitle}>La Tremenda Corte Chat</Text>  
+      <Text style={baseStyles.headerTitle}>La Tremenda Corte Chat</Text>  
     </View>  
   );  
 };  

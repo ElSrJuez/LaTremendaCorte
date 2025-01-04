@@ -1814,6 +1814,11 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-picker/picker@^2.10.2":
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-2.10.2.tgz#92870eaefdde5cf06a0bb18dde593b9675c0bcab"
+  integrity sha512-kr3OvCRwTYjR/OKlb52k4xmQVU7dPRIALqpyiihexdJxEgvc1smnepgqCeM9oXmNSG4YaV5/RSxFlLC5Z/T/Eg==
+
 "@react-native-windows/cli@0.76.0":
   version "0.76.0"
   resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.76.0.tgz#d56d4a1904cc8967d3de55720d864e7ad28ee2d9"
