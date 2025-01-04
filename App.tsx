@@ -1,7 +1,5 @@
 /**  
- * Sample React Native App  
- * https://github.com/facebook/react-native  
- * @format  
+ * App.tsx  
  */  
   
 import React, { useState } from 'react';  
@@ -22,49 +20,10 @@ import {
   Keyboard,  
 } from 'react-native';  
   
-import {  
-  Colors,  
-  DebugInstructions,  
-  Header,  
-  LearnMoreLinks,  
-  ReloadInstructions,  
-} from 'react-native/Libraries/NewAppScreen';  
+import Colors from './resources/Colors';  
+import Header from './resources/Header';  
   
 import { generateText } from './OpenAIService';  
-  
-type SectionProps = PropsWithChildren<{  
-  title: string;  
-}>;  
-  
-function Section({ children, title }: SectionProps): React.JSX.Element {  
-  const isDarkMode = useColorScheme() === 'dark';  
-  const textColor = isDarkMode ? Colors.white : Colors.black;  
-  const descriptionColor = isDarkMode ? Colors.light : Colors.dark;  
-  return (  
-    <View style={styles.sectionContainer}>  
-      <Text  
-        style={[  
-          styles.sectionTitle,  
-          {  
-            color: textColor,  
-          },  
-        ]}  
-      >  
-        {title}  
-      </Text>  
-      <Text  
-        style={[  
-          styles.sectionDescription,  
-          {  
-            color: descriptionColor,  
-          },  
-        ]}  
-      >  
-        {children}  
-      </Text>  
-    </View>  
-  );  
-}  
   
 function App(): React.JSX.Element {  
   const isDarkMode = useColorScheme() === 'dark';  
@@ -75,13 +34,12 @@ function App(): React.JSX.Element {
   const [error, setError] = useState<string>('');  
   
   const backgroundStyle = {  
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,  
+    backgroundColor: Colors.background,  
     flex: 1,  
   };  
   
-  const textColor = isDarkMode ? Colors.white : Colors.black;  
-  const placeholderTextColor = isDarkMode ? Colors.light : Colors.dark;  
-  const contentBackgroundColor = isDarkMode ? Colors.black : Colors.white;  
+  const textColor = Colors.text;  
+  const placeholderTextColor = '#666666';  
   
   const handleGenerateText = async () => {  
     if (!prompt.trim()) return;  
@@ -101,7 +59,7 @@ function App(): React.JSX.Element {
   return (  
     <SafeAreaView style={backgroundStyle}>  
       <StatusBar  
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}  
+        barStyle="dark-content"  
         backgroundColor={backgroundStyle.backgroundColor}  
       />  
       <KeyboardAvoidingView  
@@ -114,16 +72,12 @@ function App(): React.JSX.Element {
             style={backgroundStyle}  
             contentContainerStyle={{ flexGrow: 1 }}  
           >  
+            {/* Custom Header */}  
+            <Header />  
+  
             {/* Chat App UI */}  
             <View style={styles.chatContainer}>  
-              <Text  
-                style={[  
-                  styles.heading,  
-                  {  
-                    color: textColor,  
-                  },  
-                ]}  
-              >  
+              <Text style={[styles.heading, { color: textColor }]}>  
                 AI Chat  
               </Text>  
               <TextInput  
@@ -131,7 +85,7 @@ function App(): React.JSX.Element {
                   styles.input,  
                   {  
                     color: textColor,  
-                    backgroundColor: contentBackgroundColor,  
+                    backgroundColor: '#FFFFFF',  
                   },  
                 ]}  
                 placeholder="Enter your prompt"  
@@ -144,6 +98,7 @@ function App(): React.JSX.Element {
                 title={loading ? 'Generating...' : 'Generate Text'}  
                 onPress={handleGenerateText}  
                 disabled={loading}  
+                color={Colors.primary}  
               />  
               {error ? (  
                 <Text style={styles.errorText}>{error}</Text>  
@@ -151,50 +106,15 @@ function App(): React.JSX.Element {
               {result ? (  
                 <View style={styles.resultContainer}>  
                   <Text  
-                    style={[  
-                      styles.resultHeading,  
-                      {  
-                        color: textColor,  
-                      },  
-                    ]}  
+                    style={[styles.resultHeading, { color: textColor }]}  
                   >  
                     Response:  
                   </Text>  
-                  <Text  
-                    style={[  
-                      styles.resultText,  
-                      {  
-                        color: textColor,  
-                      },  
-                    ]}  
-                  >  
+                  <Text style={[styles.resultText, { color: textColor }]}>  
                     {result}  
                   </Text>  
                 </View>  
               ) : null}  
-            </View>  
-  
-            {/* Existing Sample App Content */}  
-            <View  
-              style={{  
-                backgroundColor: contentBackgroundColor,  
-              }}  
-            >  
-              <Header />  
-              <Section title="Step One">  
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this  
-                screen and then come back to see your edits.  
-              </Section>  
-              <Section title="See Your Changes">  
-                <ReloadInstructions />  
-              </Section>  
-              <Section title="Debug">  
-                <DebugInstructions />  
-              </Section>  
-              <Section title="Learn More">  
-                Read the docs to discover what to do next:  
-              </Section>  
-              <LearnMoreLinks />  
             </View>  
           </ScrollView>  
         </TouchableWithoutFeedback>  
@@ -204,25 +124,7 @@ function App(): React.JSX.Element {
 }  
   
 const styles = StyleSheet.create({  
-  // Existing styles  
-  sectionContainer: {  
-    marginTop: 32,  
-    paddingHorizontal: 24,  
-  },  
-  sectionTitle: {  
-    fontSize: 24,  
-    fontWeight: '600',  
-  },  
-  sectionDescription: {  
-    marginTop: 8,  
-    fontSize: 18,  
-    fontWeight: '400',  
-  },  
-  highlight: {  
-    fontWeight: '700',  
-  },  
-  
-  // New styles for the chat app  
+  // Chat app styles  
   chatContainer: {  
     paddingHorizontal: 24,  
     paddingTop: 32,  
