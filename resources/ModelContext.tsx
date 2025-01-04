@@ -7,6 +7,8 @@ export interface Model {
   Deployment: string;  
   Model: string;  
   ApiKEY: string;  
+  APIVersion: string;  
+  MaxTokenParam: string; // Added MaxTokenParam to the interface  
 }  
   
 interface ModelContextType {  
