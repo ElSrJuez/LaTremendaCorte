@@ -3,7 +3,7 @@ import {
   AZURE_OPENAI_API_KEY,  
   AZURE_OPENAI_API_URL,  
   AZURE_OPENAI_DEPLOYMENT_NAME,  
-} from './config';  
+} from '../config';  
   
 interface OpenAIResponseMessage {  
   content: string;  
