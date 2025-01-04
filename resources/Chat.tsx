@@ -14,7 +14,8 @@ import {
 import Colors from './Colors';  
 import { baseStyles, profileStyles } from './Styles';  
 import { generateText } from './OpenAIService';  
-import { ModelContext } from './ModelContext';  
+import { ModelContext } from './ModelContext'; 
+import Markdown from 'react-native-markdown-display'; 
   
 interface ChatProps {  
   profile: 'computer' | 'portrait' | 'landscape';  
@@ -93,9 +94,9 @@ const Chat: React.FC<ChatProps> = ({ profile }) => {
                 <Text style={[baseStyles.resultHeading, { color: textColor }]}>  
                   Response:  
                 </Text>  
-                <Text style={[baseStyles.resultText, { color: textColor }]}>  
-                  {result}  
-                </Text>  
+                <Markdown style={{ body: baseStyles.resultText }}>
+                    {result}
+                </Markdown> 
               </View>  
             ) : null}  
           </View>  
