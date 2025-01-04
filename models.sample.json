@@ -1,0 +1,14 @@
+[
+    {
+      "Endpoint": "https://yyyyy.openai.azure.com",
+      "Deployment": "zzzzz",
+      "Model": "gpt-4-32k",
+      "ApiKEY": "xxxxx"
+    },
+    {
+      "Endpoint": "https://yyyyy.openai.azure.com",
+      "Deployment": "zzzzz",
+      "Model": "o1-preview",
+      "ApiKEY": "xxxxx"
+    }
+  ]
