@@ -1,4 +1,4 @@
-/**  
+/**    
  * App.tsx  
  */  
   
@@ -6,12 +6,11 @@ import React, { useState } from 'react';
 import {  
   SafeAreaView,  
   StatusBar,  
-  View,  
 } from 'react-native';  
   
 import Colors from './resources/Colors';  
 import Header from './resources/Header';  
-import Body from './resources/Body'; // Import Body component  
+import Body from './resources/Body';  
 import Chat from './resources/Chat';  
   
 function App(): React.JSX.Element {  
@@ -31,12 +30,10 @@ function App(): React.JSX.Element {
       {/* Custom Header */}  
       <Header />  
       {/* Body Component */}  
-      {/* Use imported Body */}  
-      <Body profile={profile} setProfile={setProfile} />  
-      {/* Chat Component */}  
-      <View style={{ flex: 1 }}>  
+      <Body profile={profile} setProfile={setProfile}>  
+        {/* Chat Component */}  
         <Chat profile={profile} />  
-      </View>  
+      </Body>  
     </SafeAreaView>  
   );  
 }  

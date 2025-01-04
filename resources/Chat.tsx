@@ -1,7 +1,8 @@
 // Chat.tsx  
-import React, { useState } from 'react';  
+  
+import React, { useState, useContext } from 'react';  
 import {  
-  View,  Text,
+  View, Text,  
   TextInput,  
   Button,  
   KeyboardAvoidingView,  
@@ -11,8 +12,9 @@ import {
   ScrollView,  
 } from 'react-native';  
 import Colors from './Colors';  
-import { baseStyles, profileStyles } from './Styles'; // Use named imports  
-import { generateText } from './OpenAIService'; // Import your OpenAI service  
+import { baseStyles, profileStyles } from './Styles';  
+import { generateText } from './OpenAIService';  
+import { ModelContext } from './ModelContext';  
   
 interface ChatProps {  
   profile: 'computer' | 'portrait' | 'landscape';  
@@ -24,6 +26,13 @@ const Chat: React.FC<ChatProps> = ({ profile }) => {
   const [loading, setLoading] = useState<boolean>(false);  
   const [error, setError] = useState<string>('');  
   
+  // Access the selected model from context  
+  const modelContext = useContext(ModelContext);  
+  if (!modelContext) {  
+    throw new Error('ModelContext is not provided');  
+  }  
+  const { selectedModel } = modelContext;  
+  
   const textColor = Colors.text;  
   const placeholderTextColor = Colors.placeholder;  
   
@@ -32,7 +41,7 @@ const Chat: React.FC<ChatProps> = ({ profile }) => {
     setLoading(true);  
     setError('');  
     try {  
-      const response = await generateText(prompt);  
+      const response = await generateText(prompt, selectedModel);  
       setResult(response);  
     } catch (error) {  
       console.error('Error generating text:', error);  
@@ -42,7 +51,6 @@ const Chat: React.FC<ChatProps> = ({ profile }) => {
     }  
   };  
   
-  // Get the appropriate styles for the selected profile  
   const chatStyles = profileStyles[profile] || profileStyles.computer;  
   
   return (  
@@ -57,7 +65,6 @@ const Chat: React.FC<ChatProps> = ({ profile }) => {
           style={{ flex: 1 }}  
         >  
           <View style={chatStyles.chatContainer}>  
-            {/* Removed the "AI Chat" Text element */}  
             <TextInput  
               style={[  
                 chatStyles.input,  
