@@ -1,6 +1,7 @@
-# La Tremenda Corte Chat aPP
+# La Tremenda Corte Chat App
 
 La Tremenda Corte is a React Native application designed to provide an engaging AI chat experience. Leveraging the power of Azure OpenAI, this app allows users to interact with various AI models and manage different profiles.
+<img src="https://github.com/ElSrJuez/LaTremendaCorte/blob/main/resources/assets/LaTremendaCorteApp.png?raw=true" alt="La Tremenda Corte App" width="300"/>
 
 ## Features
 
